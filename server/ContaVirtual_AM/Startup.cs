@@ -33,6 +33,7 @@ namespace ContaVirtual_AM
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContaVirtual_AM", Version = "v1" });
+                c.CustomSchemaIds(x => x.FullName);
             });
         }
 

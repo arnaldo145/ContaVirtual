@@ -7,19 +7,19 @@ namespace ContaVirtual_AM.Controllers.v1.Accounts
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AccountController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AccountController(IMediator mediator)
+        public AccountsController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostAsync([FromBody] AccountCreate.Command command)
+        public async Task<IActionResult> PostAsync([FromBody] AccountCreate.Command accountCreateCommand)
         {
-            var response = await _mediator.Send(command);
+            var response = await _mediator.Send(accountCreateCommand);
             return Ok(response);
         }
     }

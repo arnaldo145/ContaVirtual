@@ -4,14 +4,16 @@ using ContaVirtual_AM.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ContaVirtual_AM.Migrations
 {
     [DbContext(typeof(VirtualAccountDbContext))]
-    partial class VirtualAccountDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210407031007_Add-Account-Transaction-Value")]
+    partial class AddAccountTransactionValue
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

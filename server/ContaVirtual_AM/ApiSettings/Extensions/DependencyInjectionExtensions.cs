@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ContaVirtual_AM.Domain.v1.Accounts;
+using ContaVirtual_AM.Domain.v1.Transactions;
 using ContaVirtual_AM.Repository.Accounts;
+using ContaVirtual_AM.Repository.Transactions;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,7 +14,9 @@ namespace ContaVirtual_AM.ApiSettings.Extensions
         {
             AddMediatr(services);
             AddAutoMapper(services);
+
             AddAccountFeature(services);
+            AddTransactionFeature(services);
         }
 
         private static void AddAutoMapper(this IServiceCollection services)
@@ -34,6 +38,11 @@ namespace ContaVirtual_AM.ApiSettings.Extensions
         private static void AddAccountFeature(this IServiceCollection services)
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
+        }
+
+        private static void AddTransactionFeature(this IServiceCollection services)
+        {
+            services.AddScoped<IAccountTransactionRepository, AccountTransactionRepository>();
         }
     }
 }

@@ -12,19 +12,18 @@ namespace ContaVirtual_AM.Application.v1.Accounts
         public class Command : IRequest<Guid>
         {
             public string Customer { get; set; }
-            public string CPF { get; set; }            
+            public string CPF { get; set; }   
+            public string Phone { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Guid>
         {
-            private readonly IMediator _mediator;
-            private readonly IMapper _mapper;
             private IAccountRepository _accountRepository;
+            private readonly IMapper _mapper;  
 
-            public Handler(IAccountRepository accountRepository, IMediator mediator, IMapper mapper)
+            public Handler(IAccountRepository accountRepository, IMapper mapper)
             {
-                _accountRepository = accountRepository;
-                _mediator = mediator;
+                _accountRepository = accountRepository;              
                 _mapper = mapper;
             }
 

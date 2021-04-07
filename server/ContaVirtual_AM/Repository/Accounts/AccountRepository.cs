@@ -23,10 +23,9 @@ namespace ContaVirtual_AM.Repository.Accounts
             return account.Id;
         }
 
-        public Task<Account> GetById(Guid id)
+        public async Task<Account> GetByCPF(string cpf)
         {
-            var account = _context.Accounts.FirstOrDefaultAsync(x => x.Id == id);
-
+            var account = await _context.Accounts.FirstOrDefaultAsync(x => x.CPF == cpf);
             return account;
         }
     }
