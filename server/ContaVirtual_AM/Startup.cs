@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ContaVirtual_AM.Context;
 using Microsoft.EntityFrameworkCore;
+using ContaVirtual_AM.ApiSettings.Extensions;
+using MediatR;
 
 namespace ContaVirtual_AM
 {
@@ -24,7 +26,10 @@ namespace ContaVirtual_AM
             services.AddDbContext<VirtualAccountDbContext>(options =>
                    options.UseSqlServer(Configuration.GetConnectionString("MvcMovieContext")));
 
-            services.AddControllers();
+            services.AddControllers();           
+            services.AddDependencies();
+            services.AddMvc();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContaVirtual_AM", Version = "v1" });

@@ -9,5 +9,10 @@ namespace ContaVirtual_AM.Domain.v1.Accounts
         public string CPF { get; set; }
         public DateTime OpeningDate { get; set; }
         public decimal Balance { get; set; }
+
+        public void SetOpeningDate(DateTime openingDate)
+        {
+            OpeningDate = openingDate;
+        }
     }
 }
