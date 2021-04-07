@@ -6,8 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ContaVirtual_AM.Context;
 using Microsoft.EntityFrameworkCore;
-using ContaVirtual_AM.Infra.Settings.Entities;
-using ContaVirtual_AM.Infra.Settings;
 
 namespace ContaVirtual_AM
 {
