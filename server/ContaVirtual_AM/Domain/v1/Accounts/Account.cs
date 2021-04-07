@@ -11,7 +11,7 @@ namespace ContaVirtual_AM.Domain.v1.Accounts
         public string CPF { get; set; }
         public string Phone { get; set; }
         public DateTime OpeningDate { get; set; }
-        public decimal Balance { get; set; }
+        public double Balance { get; set; }
         public List<AccountTransaction> Transactions { get; set; }
 
         public void SetOpeningDate(DateTime openingDate)
@@ -19,16 +19,16 @@ namespace ContaVirtual_AM.Domain.v1.Accounts
             OpeningDate = openingDate;
         }
 
-        public bool Debit(decimal value)
+        public bool Debit(double value)
         {
-            if (value > Balance)
+            if (value > Balance || value <= 0)
                 return false;            
 
             Balance -= value;
             return true;
         }
 
-        public bool Credit(decimal value)
+        public bool Credit(double value)
         {
             if (value <= 0)
                 return false;

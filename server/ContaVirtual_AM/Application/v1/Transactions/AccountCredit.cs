@@ -12,7 +12,7 @@ namespace ContaVirtual_AM.Application.v1.Transactions
         {
             public string CPF { get; set; }
             public string Description { get; set; }
-            public decimal Value { get; set; }
+            public double Value { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, bool>
@@ -39,7 +39,7 @@ namespace ContaVirtual_AM.Application.v1.Transactions
 
                 if (result)
                 {
-                    var transaction = new AccountTransaction(account.Id, request.Description, request.Value);
+                    var transaction = new AccountTransaction(account.Id, request.Description, TransactionType.Credit, request.Value);
 
                     _ = await _accountTransactionRepository.Add(transaction);
                 }
