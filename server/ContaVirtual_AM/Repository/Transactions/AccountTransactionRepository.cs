@@ -23,5 +23,11 @@ namespace ContaVirtual_AM.Repository.Transactions
 
             return transaction.Id;
         }
+
+        public ICollection<AccountTransaction> GetTransactionsById(Guid accountId)
+        {
+            var result = _context.Transactions.Where(x => x.AccountId == accountId);
+            return result.ToList();
+        }
     }
 }
