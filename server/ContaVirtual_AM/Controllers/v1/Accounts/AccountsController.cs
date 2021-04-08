@@ -16,6 +16,9 @@ namespace ContaVirtual_AM.Controllers.v1.Accounts
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Cria uma conta virtual
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] AccountCreate.Command accountCreateCommand)
         {

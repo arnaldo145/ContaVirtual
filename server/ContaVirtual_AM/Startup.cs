@@ -7,6 +7,9 @@ using Microsoft.OpenApi.Models;
 using ContaVirtual_AM.Context;
 using Microsoft.EntityFrameworkCore;
 using ContaVirtual_AM.ApiSettings.Extensions;
+using System.IO;
+using System.Reflection;
+using System;
 
 namespace ContaVirtual_AM
 {
@@ -34,6 +37,10 @@ namespace ContaVirtual_AM
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ContaVirtual_AM", Version = "v1" });
                 c.CustomSchemaIds(x => x.FullName);
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 

@@ -18,8 +18,8 @@ namespace ContaVirtual_AM.Application.v1.Transactions
 
         public class Handler : IRequestHandler<Command, bool>
         {
-            private IAccountRepository _accountRepository;
-            private IAccountTransactionRepository _accountTransactionRepository;
+            private readonly IAccountRepository _accountRepository;
+            private readonly IAccountTransactionRepository _accountTransactionRepository;
 
             public Handler(IAccountRepository accountRepository, IAccountTransactionRepository accountTransactionRepository)
             {
@@ -41,6 +41,7 @@ namespace ContaVirtual_AM.Application.v1.Transactions
                     var transaction = new AccountTransaction(account.Id, request.Description, TransactionType.Credit, request.Value);
 
                     _ = await _accountTransactionRepository.Add(transaction);
+                    _ = _accountRepository.Update(account);
                 }
 
                 return result;

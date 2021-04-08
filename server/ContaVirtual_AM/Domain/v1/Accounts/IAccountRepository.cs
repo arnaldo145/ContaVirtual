@@ -7,5 +7,6 @@ namespace ContaVirtual_AM.Domain.v1.Accounts
     {
         Task<Guid> Add(Account account);
         Task<Account> GetByCPF(string cpf);
+        Task Update(Account account);
     }
 }

@@ -16,6 +16,10 @@ namespace ContaVirtual_AM.Controllers.v1.Transactions
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Realiza operação de débito na conta virtual
+        /// </summary>
+        /// <returns>Informa se conseguiu realizar a operação de débito na conta virtual</returns>
         [HttpPost]
         [Route("debit")]
         public async Task<IActionResult> DebitAsync([FromBody] AccountDebit.Command accountDebitCommand)
@@ -24,14 +28,23 @@ namespace ContaVirtual_AM.Controllers.v1.Transactions
             return Ok(response);
         }
 
+        /// <summary>
+        /// Realiza operação de crédito na conta virtual
+        /// </summary>
+        /// <returns>Informa se conseguiu realizar a operação de crédito na conta virtual</returns>
         [HttpPost]
         [Route("credit")]
-        public async Task<IActionResult> CreditAsync([FromBody] AccountCredit.Command accountDebitCommand)
+        public async Task<IActionResult> CreditAsync([FromBody] AccountCredit.Command accountCreditCommand)
         {
-            var response = await _mediator.Send(accountDebitCommand);
+            var response = await _mediator.Send(accountCreditCommand);
             return Ok(response);
         }
 
+
+        /// <summary>
+        /// Obtem o extrato da conta virtual
+        /// </summary>
+        /// <param name="cpf">CPF do cliente que possui conta virtual</param>
         [HttpGet]       
         [Route("{cpf}")]
         public async Task<IActionResult> GetAsync([FromRoute] string cpf)

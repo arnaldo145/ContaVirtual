@@ -41,6 +41,7 @@ namespace ContaVirtual_AM.Application.v1.Transactions
                     var transaction = new AccountTransaction(account.Id, request.Description, TransactionType.Debit, request.Value);
 
                     _ = await _accountTransactionRepository.Add(transaction);
+                    _ = _accountRepository.Update(account);
                 }
 
                 return result;

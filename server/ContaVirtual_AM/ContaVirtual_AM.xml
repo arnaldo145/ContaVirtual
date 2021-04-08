@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ContaVirtual_AM</name>
+    </assembly>
+    <members>
+        <member name="M:ContaVirtual_AM.Controllers.v1.Accounts.AccountsController.PostAsync(ContaVirtual_AM.Application.v1.Accounts.AccountCreate.Command)">
+            <summary>
+            Cria uma conta virtual
+            </summary>
+        </member>
+        <member name="M:ContaVirtual_AM.Controllers.v1.Transactions.TransactionsController.DebitAsync(ContaVirtual_AM.Application.v1.Transactions.AccountDebit.Command)">
+            <summary>
+            Realiza operação de débito na conta virtual
+            </summary>
+            <returns>Informa se conseguiu realizar a operação de débito na conta virtual</returns>
+        </member>
+        <member name="M:ContaVirtual_AM.Controllers.v1.Transactions.TransactionsController.CreditAsync(ContaVirtual_AM.Application.v1.Transactions.AccountCredit.Command)">
+            <summary>
+            Realiza operação de crédito na conta virtual
+            </summary>
+            <returns>Informa se conseguiu realizar a operação de crédito na conta virtual</returns>
+        </member>
+        <member name="M:ContaVirtual_AM.Controllers.v1.Transactions.TransactionsController.GetAsync(System.String)">
+            <summary>
+            Obtem o extrato da conta virtual
+            </summary>
+            <param name="cpf">CPF do cliente que possui conta virtual</param>
+        </member>
+    </members>
+</doc>

@@ -28,5 +28,11 @@ namespace ContaVirtual_AM.Repository.Accounts
             var account = await _context.Accounts.FirstOrDefaultAsync(x => x.CPF == cpf);
             return account;
         }
+
+        public async Task Update(Account account)
+        {
+             _context.Accounts.Update(account);
+            await _context.SaveChangesAsync();
+        }
     }
 }
