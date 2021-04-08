@@ -7,7 +7,6 @@ using Microsoft.OpenApi.Models;
 using ContaVirtual_AM.Context;
 using Microsoft.EntityFrameworkCore;
 using ContaVirtual_AM.ApiSettings.Extensions;
-using MediatR;
 
 namespace ContaVirtual_AM
 {

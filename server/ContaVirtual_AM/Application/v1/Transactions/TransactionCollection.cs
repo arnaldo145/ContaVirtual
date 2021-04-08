@@ -3,6 +3,7 @@ using ContaVirtual_AM.Controllers.v1.Transactions.ViewModels;
 using ContaVirtual_AM.Domain.v1.Accounts;
 using ContaVirtual_AM.Domain.v1.Transactions;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -40,7 +41,7 @@ namespace ContaVirtual_AM.Application.v1.Transactions
 
                 if (account is null)
                 {
-                    
+                    throw new Exception($"Não existe a conta virtual com CPF '{request.CPF}'.");
                 }
 
                 var transactions = _accountTransactionRepository.GetTransactionsById(account.Id);

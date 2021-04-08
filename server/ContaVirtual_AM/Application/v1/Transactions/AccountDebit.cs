@@ -1,6 +1,7 @@
 ﻿using ContaVirtual_AM.Domain.v1.Accounts;
 using ContaVirtual_AM.Domain.v1.Transactions;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,9 +32,7 @@ namespace ContaVirtual_AM.Application.v1.Transactions
                 var account = await _accountRepository.GetByCPF(request.CPF);
 
                 if (account is null)
-                {
-                    return false;
-                }
+                    throw new Exception($"Não existe a conta virtual com CPF '{request.CPF}'.");
 
                 var result = account.Debit(request.Value);
 

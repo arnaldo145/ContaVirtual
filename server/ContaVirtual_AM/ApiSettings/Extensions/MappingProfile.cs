@@ -11,7 +11,8 @@ namespace ContaVirtual_AM.ApiSettings.Extensions
         public MappingProfile()
         {
             CreateMap<AccountCreate.Command, Account>();
-            CreateMap<AccountTransaction, TransactionViewModel>();
+            CreateMap<AccountTransaction, TransactionViewModel>()
+                .ForMember(x => x.Type, opt => opt.MapFrom(x => x.Type == TransactionType.Credit ? "Crédito" : "Débito"));
         }
     }
 }

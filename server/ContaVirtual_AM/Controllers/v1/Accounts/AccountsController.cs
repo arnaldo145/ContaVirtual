@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ContaVirtual_AM.Controllers.v1.Accounts
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class AccountsController : ControllerBase
     {

@@ -1,12 +1,11 @@
-﻿using AutoMapper;
-using ContaVirtual_AM.Application.v1.Transactions;
+﻿using ContaVirtual_AM.Application.v1.Transactions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace ContaVirtual_AM.Controllers.v1.Transactions
 {
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     [ApiController]
     public class TransactionsController : ControllerBase
     {
@@ -33,12 +32,14 @@ namespace ContaVirtual_AM.Controllers.v1.Transactions
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpGet]       
         [Route("{cpf}")]
         public async Task<IActionResult> GetAsync([FromRoute] string cpf)
         {
             var query = new TransactionCollection.Query(cpf);
-            var response = await _mediator.Send(query);          
+            var response = await _mediator.Send(query);
+
+            
 
             return Ok(response);
         }
