@@ -24,7 +24,7 @@
             <div class="input-group mb-3">
                 <input type="text" maxlength="11" class="form-control"
                     placeholder="Informe o CPF do titular da conta (apenas números)" aria-label="Recipient's username"
-                    aria-describedby="basic-addon2">
+                    aria-describedby="basic-addon2" ng-model="cpf">
 
                 <div class="input-group-append">
                     <button id="generateStatementBtn" ng-click="generateStatement()" class="btn btn-outline-secondary"
@@ -38,24 +38,25 @@
 
                 <table class="table">
                     <thead>
-                      <tr>
-                        <th scope="col">Data</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Valor</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">Data</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Valor</th>
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr ng-repeat="transaction in result.transactions">
-                        <td>{{transaction.date | date:'dd/MM/yyyy HH:mm'}}</td>
-                        <td>{{transaction.description}}</td>
-                        <td>{{transaction.type}}</td>
-                        <td>R$ <strong>{{transaction.value.toLocaleString()}}</strong></td>
-                      </tr>
+                        <tr ng-repeat="transaction in result.transactions">
+                            <td>{{transaction.date | date:'dd/MM/yyyy HH:mm'}}</td>
+                            <td>{{transaction.description}}</td>
+                            <td>{{transaction.type}}</td>
+                            <td>R$ <strong>{{transaction.value.toLocaleString()}}</strong></td>
+                        </tr>
                     </tbody>
-                  </table>
+                </table>
 
-                <p style="text-align: right; font-size: 20px">Saldo final: <strong style="color: blue;">R${{result.balance.toLocaleString()}}</strong></p>
+                <p style="text-align: right; font-size: 20px">Saldo final: <strong
+                        style="color: blue;">R${{result.balance.toLocaleString()}}</strong></p>
             </div>
         </div>
     </div>
@@ -63,15 +64,18 @@
     <script>
         var app = angular.module('myApp', []);
         app.controller('myCtrl', function ($scope, $http) {
-            $scope.generateStatement = function () {
-                $http.get("https://localhost:5001/v1/Transactions/07743121909")
-                    .then(function (response) {
-                        $scope.result = response.data;
 
-                        console.log("OK:", response.data);
-                    }).catch(function (response) {
-                        console.log("ERROR:", response);
-                    });
+            $scope.generateStatement = function () {
+                if ($scope.cpf) {
+                    $http.get(`https://localhost:5001/v1/Transactions/${$scope.cpf}`)
+                        .then(function (response) {
+                            $scope.result = response.data;
+                        }).catch(function (response) {
+                            alert("Houve um erro ao tentar gerar extrato para essa conta!");
+                        });
+                } else {
+                    alert("Informe o CPF!");
+                }
             };
         });
     </script>
