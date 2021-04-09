@@ -42,6 +42,17 @@ namespace ContaVirtual_AM
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
+            // Add CORS policy
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                builder =>
+                {
+                    // Not a permanent solution, but just trying to isolate the problem
+                    builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +68,8 @@ namespace ContaVirtual_AM
             app.UseHttpsRedirection();
 
             app.UseRouting();
+ 
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
@@ -64,6 +77,21 @@ namespace ContaVirtual_AM
             {
                 endpoints.MapControllers();
             });
+
+            UpdateDatabase(app);
+        }
+
+        private static void UpdateDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope())
+            {
+                using (var context = serviceScope.ServiceProvider.GetService<VirtualAccountDbContext>())
+                {
+                    context.Database.Migrate();
+                }
+            }
         }
     }
 }
